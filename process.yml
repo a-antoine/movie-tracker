@@ -1,0 +1,20 @@
+apps:
+  - script: dist/index.js
+    instances: 1
+    exec_mode: cluster
+    watch: false
+    env:
+      ENV: prod
+      PORT: 3000
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_USER: xxxxxxxxxxxxxxxx
+      MYSQL_PASSWORD: xxxxxxxxxxxxxxxx
+      MYSQL_DATABASE: movie_tracker
+      ES_HOST_1: 127.0.0.1
+      ES_HOST_2: 127.0.0.1
+      SENDGRID_API_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      JWT_SECRET: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      OMDB_API_KEY: xxxxxxxx
+      TMDB_API_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      G_CAPTCHA_SITEKEY: 6LcbHVAUAAAAAGEsJ20vFUTiBsrg922xvmoQw3RQ
+      G_CAPTCHA_SECRET: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

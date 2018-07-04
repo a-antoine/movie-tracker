@@ -1,0 +1,63 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		title Movie Tracker
+		link(rel='stylesheet', href='/static/styles/vendor/bootstrap.min.css')
+		link(href='/static/styles/register.css', rel='stylesheet')
+		script(defer, src='/static/js/vendor/fontawesome-5.0.8-all.js')
+		link(rel='icon', type='image/png', sizes='32x32', href='/static/favicon-32x32.png')
+		link(rel='icon', type='image/png', sizes='96x96', href='/static/favicon-96x96.png')
+		link(rel='icon', type='image/png', sizes='16x16', href='/static/favicon-16x16.png')
+		meta(name='theme-color', content='#212529')
+		script(src='https://www.google.com/recaptcha/api.js')
+	body
+		.container
+			a(href="/")
+				i.fas.fa-arrow-circle-left
+				|
+				| Go back to homepage
+			if error
+				#errorAlert.alert.alert-danger.alert-dismissible.fade.show(role="alert")
+					strong Error:
+					|  #{error}
+					button.close(type="button" data-dismiss="alert" aria-label="Close")
+						span(aria-hidden="true") ×
+				script.
+					setTimeout(function () {
+						$("#errorAlert").alert("close");
+					}, 8000);
+			.flex
+				form.form-register(action="register" method="post")
+					div.text-center.mb-4
+						img.mb-4(src="/static/images/logo.png" alt="" width="72" height="72")
+						h1.h3.mb-3.font-weight-normal Register a new account
+
+					div.form-label-group
+						input#inputUsername.form-control(type="text" placeholder="Username" name="username" required autofocus)
+						label(for="inputUsername") Username
+
+					div.form-label-group
+						input#inputPassword.form-control(type="password" placeholder="Password" name="password" required)
+						label(for="inputPassword") Password
+					div.form-label-group
+						input#inputPasswordVerification.form-control(type="password" placeholder="Password verification" name="passwordVerification" required)
+						label(for="inputPasswordVerification") Password verification
+
+					div.form-label-group
+						input#inputEmail.form-control(type="email" placeholder="Email address" name="emailAddress" required)
+						label(for="inputEmail") Email address
+						small.form-text.text-muted Your email will only be used to send you a recovery link if you forget your password.
+					div.form-label-group
+						input#inputEmailVerification.form-control(type="email" placeholder="Email address verification" name="emailAddressVerification" required)
+						label(for="inputEmailVerification") Email address verification
+
+					.text-center
+						.g-recaptcha(data-sitekey=siteKey)
+
+					button.btn.btn-lg.btn-primary.btn-block(type="submit") Register
+					p.mt-5.mb-3.text-muted.text-center Movie Tracker 2018
+		script(src='/static/js/vendor/jquery-3.2.1.min.js')
+		script(src='/static/js/vendor/popper.min.js')
+		script(src='/static/js/vendor/bootstrap.min.js')

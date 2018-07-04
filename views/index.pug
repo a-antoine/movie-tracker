@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	.jumbotron
+		.container
+			h1.display-3 Movie Tracker
+			p Movie Tracker is an online tool that lets you keep track of your watched movies.
+			p It also provides statistics and movies recommendations.
+			if !user
+				p You need to #[a(href="/user/register") register] or #[a(href="/user/login") login] to use this service.
+			else
+				p Go to the #[a(href="/dashboard") Dashboard]

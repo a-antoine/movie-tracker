@@ -1,0 +1,16 @@
+{
+	"development": {
+		"username": "movie-tracker",
+		"password": "movie-tracker",
+		"database": "movie_tracker",
+		"host": "192.168.248.128",
+		"dialect": "mysql"
+	},
+	"production": {
+		"username": "xxxxxxxxxxxxxxxx",
+		"password": "xxxxxxxxxxxxxxxx",
+		"database": "movie_tracker",
+		"host": "vps.antoine.ovh",
+		"dialect": "mysql"
+	}
+}

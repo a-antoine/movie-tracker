@@ -1,0 +1,25 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		title Movie Tracker
+		link(rel='stylesheet', href='/static/styles/vendor/bootstrap.min.css')
+		script(defer, src='/static/js/vendor/fontawesome-5.0.8-all.js')
+		link(href='/static/styles/main.css', rel='stylesheet')
+		link(rel='icon', type='image/png', sizes='32x32', href='/static/favicon-32x32.png')
+		link(rel='icon', type='image/png', sizes='96x96', href='/static/favicon-96x96.png')
+		link(rel='icon', type='image/png', sizes='16x16', href='/static/favicon-16x16.png')
+		meta(name='theme-color', content='#212529')
+		meta(name='description', content='Movie Tracker is an online tool that lets you keep track of your watched movies. It also provides statistics and movies recommendations.')
+	body
+		include navigation.pug
+		.container
+			block content
+		footer.footer
+			.container
+				span.text-muted Movie Tracker 2018
+		script(src='/static/js/vendor/jquery-3.2.1.min.js')
+		script(src='/static/js/vendor/popper.min.js')
+		script(src='/static/js/vendor/bootstrap.min.js')
+		script(src='/static/js/dashboard.js')

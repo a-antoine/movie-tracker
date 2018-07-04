@@ -1,0 +1,45 @@
+image: node:6
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+build:
+  stage: build
+  artifacts:
+    paths:
+      - dist/
+      - static/
+      - views/
+      - package.json
+      - package-lock.json
+      - process.yml
+      - .env
+    expire_in: 1 week
+  script:
+    - npm install -g typescript
+    - npm install
+    - tsc
+
+deploy:
+  stage: deploy
+  environment:
+    name: production
+    url: https://mvtr.tk
+  only:
+    - master
+  script:
+    - apt-get --yes update
+    - apt-get --yes install rsync
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh
+    - eval $(ssh-agent -s)
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh-add <(echo "$DEPLOYMENT_PRIVATE_KEY")
+    - rsync -avzr -e 'ssh -p 41972' dist static views package.json package-lock.json process.yml .env root@92.222.80.209:/root/node/movie-tracker
+    - ssh -p 41972 root@92.222.80.209 "cd ~/node/movie-tracker && npm prune && npm i && pm2 restart process.yml"
+

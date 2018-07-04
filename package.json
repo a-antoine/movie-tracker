@@ -1,0 +1,41 @@
+{
+  "name": "movie-tracker",
+  "version": "0.0.1",
+  "description": "Movie tracker",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/a-antoine/movie-tracker.git"
+  },
+  "author": "Antoine A.",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^5.0.1",
+    "elasticsearch": "^14.2.1",
+    "express": "^4.16.2",
+    "got": "^8.3.0",
+    "jsonwebtoken": "^8.2.0",
+    "moment": "^2.21.0",
+    "moment-duration-format": "^2.2.2",
+    "morgan": "^1.9.0",
+    "mysql2": "^1.5.2",
+    "pug": "^2.0.1",
+    "sequelize": "^4.35.5"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.16.8",
+    "@types/express": "^4.11.1",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^9.4.6",
+    "nodemon": "^1.17.1",
+    "typescript": "^2.7.2"
+  }
+}

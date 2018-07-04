@@ -1,0 +1,25 @@
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+	a.navbar-brand(href="/")
+		img.d-inline-block.align-top(src="/static/images/logo.png", width="30", height="30", alt="")
+		| Movie Tracker
+	button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarCollapse", aria-controls="navbarCollapse", aria-expanded="false", aria-label="Toggle navigation")
+		span.navbar-toggler-icon
+	#navbarCollapse.collapse.navbar-collapse
+		ul.navbar-nav.mr-auto
+			if user
+				li.nav-item(class=title=="Dashboard"?"active":undefined)
+					a.nav-link(href="/dashboard") Dashboard
+				li.nav-item(class=title=="Movies Watched"?"active":undefined)
+					a.nav-link(href="/movies-watched") Movies watched
+		ul.navbar-nav.ml-auto
+			if !user
+				li.nav-item
+					a.nav-link(href="/user/login") Login
+				li.nav-item
+					a.nav-link(href="/user/register") Register
+			else
+				if user.role == "ADMIN"
+					li.nav-item(class=title=="Admin"?"active":undefined)
+						a.nav-link(href="/admin") Admin
+				li.nav-item
+					a.nav-link(href="/user/logout") Logout

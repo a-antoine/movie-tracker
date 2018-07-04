@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	h1 Admin
+	p Welcome to the admin panel
+	h3 Today's OMDB API usage
+	.progress
+		.progress-bar.bg-secondary(role="progressbar" style="width: " + lastUsage.requestsCount / 10 + "%" aria-valuenow=lastUsage.requestsCount aria-valuemin="0" aria-valuemax="1000")
+			| #{lastUsage.requestsCount} / 1000
+	br
+	h3 Last month OMDB API usage
+	canvas#canvas
+
+	script(src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js")
+	script(src="/static/js/admin.js")
+
+	script.
+		window.onload = function() {
+			var ctx = document.getElementById("canvas").getContext("2d");
+			var config = getConfig(!{JSON.stringify(usages).replace(/<\//g, '<\\/')});
+			window.myLine = new Chart(ctx, config);
+		};

@@ -1,0 +1,44 @@
+extends layout
+
+block content
+	if watchedMovies.length === 0
+		p You didn't add any movie yet? ☹ Use the search bar above to add your first one!
+	.row
+		each watchedMovie in watchedMovies.movies
+			.col-12.col-md-6.col-lg-3.movie-card
+				.card
+					if watchedMovie.poster != "N/A"
+						img.card-img-top(src=watchedMovie.poster, alt=watchedMovie.title)
+					.card-body
+						p.card-text 
+							strong #{watchedMovie.title}
+							a.btn.btn-sm.btn-danger.float-right(title="Remove from watched movies", href="/movie/mark-unwatched/" + watchedMovie.imdbId)
+								i.fas.fa-times
+							br
+							| #{watchedMovie.year}, #{watchedMovie.runtime} min
+							br
+							| Viewed on: #{moment(watchedMovie.viewedAt).format("MMMM Do YYYY")}
+							|
+							button.btn.btn-sm.btn-warning(
+								data-toggle="modal"
+								data-target="#changeDateModal"
+								data-movie-imdb-id=watchedMovie.imdbId
+								data-movie-title=watchedMovie.title
+								data-watched-date=moment(watchedMovie.viewedAt).format("YYYY-MM-DD")
+							)
+								i.far.fa-edit
+
+	#changeDateModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="changeDateModalLabel" aria-hidden="true")
+		.modal-dialog(role="document")
+			.modal-content
+				.modal-header
+					h5#changeDateModalLabel.modal-title Change the watch date
+					button.close(type="button" data-dismiss="modal" aria-label="Close")
+						span(aria-hidden="true") ×
+				.modal-body
+					p Change the watch date of <span id="movieTitle"></span>
+					input#date(type="date" required)
+					input#imdbId(type="hidden")
+				.modal-footer
+					button.btn.btn-secondary(type="button" data-dismiss="modal") Cancel
+					button.btn.btn-primary(type="button" onclick="changeWatchDate()") Save date
